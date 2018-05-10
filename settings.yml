@@ -1,5 +1,5 @@
 Nav_links:
   type: list
-  default: "Site Feedback, Discussions about this community and ideas for improvement,/c/site-feedback|Contest!, Ever wanted to just win something? Now here's your chance!, /t/5"
+  default: "Site Feedback; Discussions about this community and ideas for improvement;/c/site-feedback|Contest!; Ever wanted to just win something? Now here's your chance!; /t/5"
   description:
-    en: "Comma delimited in this order: display name,description,URL. Display name is the text that shows on the menu. Description is the help text that shows on hover. URL is the path for the link."
+    en: "Semicolon delimited in this order: display name,description,URL. Display name is the text that shows on the menu. Description is the help text that shows on hover. URL is the path for the link."
