@@ -1,0 +1,14 @@
+<script type="text/discourse-plugin" version="0.8.14">
+var nmlt = settings.Nav_links;
+
+nmlt.split("|").map(i => {
+  var sec = $.map(i.split(","), $.trim);
+
+  api.addNavigationBarItem({
+    name: sec[0],
+    displayName: sec[0],
+    title: sec[1],
+    href: sec[2]
+  });
+});
+</script>
