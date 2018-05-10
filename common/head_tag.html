@@ -2,7 +2,7 @@
 var nmlt = settings.Nav_links;
 
 nmlt.split("|").map(i => {
-  var sec = $.map(i.split(","), $.trim);
+  var sec = $.map(i.split(";"), $.trim);
 
   api.addNavigationBarItem({
     name: sec[0],
