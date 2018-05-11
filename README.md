@@ -2,4 +2,4 @@
 
 A theme component that allows you to add links to the navigation menu.
 
-More information: https://meta.discourse.org/t/
+More information: https://meta.discourse.org/t/87225
