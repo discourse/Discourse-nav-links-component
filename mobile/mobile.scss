@@ -1,0 +1,12 @@
+@if $Hide_dropdowns == "true" {
+  ol.category-breadcrumb {
+    display: none;
+  }
+}
+
+@if $Hide_default_links == "true" {
+  .list-controls .drop li:first-of-type,
+  .navigation-categories .list-controls .drop li:nth-of-type(2) {
+    display: none;
+  }
+}
