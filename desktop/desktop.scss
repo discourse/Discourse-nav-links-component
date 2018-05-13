@@ -5,8 +5,9 @@
 }
 
 @if $Hide_default_links == "true" {
-  #navigation-bar li:first-of-type,
-  .navigation-categories ul#navigation-bar li:nth-of-type(2) {
+  #navigation-bar { 
+    li:nth-child(1),
+    li:nth-child(2) {
     display: none;
   }
 }
