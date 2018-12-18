@@ -1,8 +1,9 @@
 <script type="text/discourse-plugin" version="0.8.18">
+const { iconHTML } = require("discourse-common/lib/icon-library");
 
 var nmlt = settings.Nav_links,
   sec = $.map(nmlt.split("|"), $.trim),
-  markd = '<i class="fa fa-caret-down d-icon d-icon-caret-down"></i>',
+  markd = iconHTML('caret-down'),
   navHeader = 'li.navigation-toggle .toggle-link';
 
 
