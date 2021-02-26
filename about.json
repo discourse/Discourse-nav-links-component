@@ -1,6 +1,6 @@
 {
   "name": "Nav Links Component",
   "about_url": "https://meta.discourse.org/t/87225",
-  "license_url": "https://github.com/hnb-ku/Discourse-nav-links-component/blob/master/LICENSE",
+  "license_url": "https://github.com/discourse/Discourse-nav-links-component/blob/main/LICENSE",
   "component": true
 }
