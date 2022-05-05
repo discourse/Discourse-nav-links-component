@@ -21,6 +21,7 @@ $.each(sec, function() {
 });
 
 api.modifyClass("component:discovery-topics-list", {
+  pluginId: 'discourse-nav-links-component',
   didInsertElement() {
     $.each(sec, function() {
       var sec = $.map(this.split(";"), $.trim),
