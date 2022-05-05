@@ -1,32 +1,31 @@
 <script type="text/discourse-plugin" version="0.8.18">
 
-var nmlt = settings.Nav_links,
-  sec = $.map(nmlt.split("|"), $.trim);
+  var nmlt = settings.Nav_links,
+    sec = $.map(nmlt.split("|"), $.trim);
 
-$.each(sec, function(value) {
-  var sec = $.map(this.split(";"), $.trim),
-    filter = sec[0].replace(/\s+/g, "-").toLowerCase(),
-    location = sec[2];
+  $.each(sec, function(value) {
+    var sec = $.map(this.split(";"), $.trim),
+      filter = sec[0].replace(/\s+/g, "-").toLowerCase(),
+      location = sec[2];
 
-  api.addNavigationBarItem({
-    name: filter,
-    displayName: sec[0],
-    title: sec[1],
-    href: sec[2]
+    api.addNavigationBarItem({
+      name: filter,
+      displayName: sec[0],
+      title: sec[1],
+      href: sec[2]
+    });
+
+    api.modifyClass("component:navigation-item", {
+      pluginId: 'discourse-nav-links-component',
+      active: Ember.computed("contentFilterMode", "filterMode", function() {
+        let contentFilterMode = this.get("content").get("filterMode");
+
+        if (window.location.pathname === location) {
+          return contentFilterMode === filter;
+        } else {
+          return this._super(contentFilterMode, this.get("filterMode"));
+        }
+      })
+    });
   });
-
-  api.modifyClass("component:navigation-item", {
-    pluginId: 'discourse-nav-links-component',
-    active: Ember.computed("contentFilterMode", "filterMode", function() {
-      let contentFilterMode = this.get("content").get("filterMode");
-
-      if (window.location.pathname === location) {
-        return contentFilterMode === filter;
-      } else {
-        return this._super(contentFilterMode, this.get("filterMode"));
-      }
-    })
-  });
-});
-
 </script>
