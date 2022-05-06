@@ -5,10 +5,10 @@
 }
 
 @if $Hide_default_links == "true" {
-  #navigation-bar { 
+  #navigation-bar {
     li:nth-child(1),
     li:nth-child(2) {
-    display: none;
+      display: none;
+    }
   }
- }
 }
