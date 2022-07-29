@@ -30,7 +30,7 @@
           filter = sec[0],
           location = sec[2];
     if (sec[2].indexOf("?") === -1) {
-        if (window.location.pathname.match(sec2)) {
+        if (window.location.pathname.match(sec[2])) {
           $(navHeader).html(filter + markd);
         }
       } else {
