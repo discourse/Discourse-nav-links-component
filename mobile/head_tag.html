@@ -29,19 +29,18 @@
         var sec = $.map(this.split(";"), $.trim),
           filter = sec[0],
           location = sec[2];
-        
     if (sec[2].indexOf("?") === -1) {
-                if (window.location.pathname.match(sec2)) {
-                    $(navHeader).html(filter + markd);
-                }
-            } else {
-                // reg ?->/? 
-                sec[2] = sec[2].replace(/\?/g, "/?");
-                pathWithSearch = window.location.pathname + window.location.search
-                if (pathWithSearch.match(sec2)) {
-                    $(navHeader).html(filter + markd);
-                }
-            }
+        if (window.location.pathname.match(sec2)) {
+          $(navHeader).html(filter + markd);
+        }
+      } else {
+        // reg ?->/?
+        sec[2] = sec[2].replace(/\?/g, "/?");
+        const pathWithSearch = window.location.pathname + window.location.search;
+        if (pathWithSearch.match(sec2)) {
+          $(navHeader).html(filter + markd);
+        }
+      }
         
        
       });
