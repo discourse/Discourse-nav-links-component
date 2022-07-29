@@ -32,9 +32,12 @@
           console.log(sec);
           console.log(window.location.pathname);
           
-          
-
+        // reg ?->/? 
+        const sec2=sec[2].replace(/\?/g,"");
+        
+        if (window.location.pathname.match(sec2)) {
           $(navHeader).html(filter + markd);
+        }
       });
     }
   });
