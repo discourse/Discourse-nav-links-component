@@ -37,7 +37,7 @@
         // reg ?->/?
         sec[2] = sec[2].replace(/\?/g, "/?");
         const pathWithSearch = window.location.pathname + window.location.search;
-        if (pathWithSearch.match(sec2)) {
+        if (pathWithSearch.match(sec[2])) {
           $(navHeader).html(filter + markd);
         }
       }
