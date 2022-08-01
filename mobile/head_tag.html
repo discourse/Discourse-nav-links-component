@@ -3,13 +3,12 @@
 
   var nmlt = settings.Nav_links,
     sec = $.map(nmlt.split("|"), $.trim),
-    markd = iconHTML('caret-down'),
-    navHeader = 'li.navigation-toggle .toggle-link';
+    markd = iconHTML("caret-down"),
+    navHeader = "li.navigation-toggle .toggle-link";
 
-          console.log(sec);
+  console.log(sec);
 
-
-  $.each(sec, function() {
+  $.each(sec, function () {
     var sec = $.map(this.split(";"), $.trim),
       filter = sec[0].replace(/\s+/g, "-").toLowerCase(),
       location = sec[2];
@@ -18,32 +17,33 @@
       name: filter,
       displayName: sec[0],
       title: sec[1],
-      href: sec[2]
+      href: sec[2],
     });
   });
 
   api.modifyClass("component:discovery-topics-list", {
-    pluginId: 'discourse-nav-links-component',
+    pluginId: "discourse-nav-links-component",
     didInsertElement() {
-      $.each(sec, function() {
+      $.each(sec, function () {
         var sec = $.map(this.split(";"), $.trim),
           filter = sec[0],
           location = sec[2];
-    if (sec[2].indexOf("?") === -1) {
-        if (window.location.pathname.match(sec[2])) {
-          $(navHeader).html(filter + markd);
+          
+        if (sec[2].indexOf("?") === -1) {
+          if (window.location.pathname.match(sec[2])) {
+            $(navHeader).html(filter + markd);
+          }
+        } else {
+          // reg ?->/?
+          // query
+          sec[2] = sec[2].replace(/\?/g, "/?");
+          const pathWithSearch =
+            window.location.pathname + window.location.search;
+          if (pathWithSearch.match(sec[2])) {
+            $(navHeader).html(filter + markd);
+          }
         }
-      } else {
-        // reg ?->/?
-        sec[2] = sec[2].replace(/\?/g, "/?");
-        const pathWithSearch = window.location.pathname + window.location.search;
-        if (pathWithSearch.match(sec[2])) {
-          $(navHeader).html(filter + markd);
-        }
-      }
-        
-       
       });
-    }
+    },
   });
 </script>
