@@ -6,8 +6,7 @@
 
 @if $Hide_default_links == "true" {
   #navigation-bar {
-    li:nth-child(1),
-    li:nth-child(2) {
+    li:not(.navigation-toggle):not([class*="custom_"]) {
       display: none;
     }
   }

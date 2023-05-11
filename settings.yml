@@ -2,7 +2,11 @@ Nav_links:
   type: list
   default: "Latest;topics with recent posts;/latest|Categories;all topics grouped by category;/categories|Top;the most active topics in the last year, month, week or day;/top"
   description:
-    en: "Semicolon delimited in this order: display name;description;URL. Display name is the text that shows on the menu. Description is the help text that shows on hover. URL is the path for the link."
+    en: |
+      Semicolon delimited in this order: <strong>display name;description;URL</strong>
+      <br/><strong>Display name:</strong> text that shows on the menu
+      <br/><strong>Description:</strong> text that shows on hover
+      <br/><strong>URL:</strong> the link (e.g., <code>/latest</code> or <code>https://discourse.org</code>)
 Hide_dropdowns:
   default: false
   description:
@@ -10,4 +14,4 @@ Hide_dropdowns:
 Hide_default_links:
   default: false
   description:
-    en: "Hide the default 'Latest' and 'Categories' links on both mobile and desktop. Some Discourse settings will need to be changed. See theme topic on Meta"
+    en: "Hide the default links on both mobile and desktop."
