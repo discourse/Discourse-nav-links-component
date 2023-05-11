@@ -2,31 +2,26 @@ import { withPluginApi } from "discourse/lib/plugin-api";
 
 export default {
   name: "nav-links-component",
+
   initialize() {
     withPluginApi("0.8", (api) => {
-      const itemsSetting = settings.Nav_links,
-        items = itemsSetting.split("|").map(function (item) {
-          return item.trim();
-        });
+      const itemsSetting = settings.Nav_links;
+      const items = itemsSetting.split("|").map((item) => item.trim());
 
-      items.forEach(function (item) {
-        const splitSec = item.split(";").map(function (section) {
-            return section.trim();
-          }),
-          filter = splitSec[0].replace(/\s+/g, "-").toLowerCase(),
-          title = splitSec[1],
-          location = splitSec[2];
+      for (const item of items) {
+        const splitSec = item.split(";").map((section) => section.trim());
+        const filter = splitSec[0].replace(/\s+/g, "-").toLowerCase();
+        const title = splitSec[1];
+        const location = splitSec[2];
 
         api.addNavigationBarItem({
           name: `custom_${filter}`,
           displayName: filter,
           title,
           href: location,
-          forceActive: (category, args, router) => {
-            return router.currentURL.includes(location);
-          },
+          forceActive: (category, args, router) => router.currentURL.includes(location))
         });
-      });
+      }
     });
   },
 };
