@@ -10,12 +10,13 @@ export default {
 
       for (const item of items) {
         const splitSec = item.split(";").map((section) => section.trim());
-        const filter = splitSec[0].replace(/\s+/g, "-").toLowerCase();
+        const filter = splitSec[0];
+        const filterDasherized = splitSec[0].replace(/\s+/g, "-").toLowerCase();
         const title = splitSec[1];
         const location = splitSec[2];
 
         api.addNavigationBarItem({
-          name: `custom_${filter}`,
+          name: `custom_${filterDasherized}`,
           displayName: filter,
           title,
           href: location,
