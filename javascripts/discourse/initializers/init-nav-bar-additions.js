@@ -6,7 +6,10 @@ export default {
   initialize() {
     withPluginApi("0.8", (api) => {
       const itemsSetting = settings.Nav_links;
-      const items = itemsSetting.split("|").map((item) => item.trim());
+      const items = itemsSetting
+        .split("|")
+        .map((item) => item.trim())
+        .filter(Boolean);
 
       for (const item of items) {
         const splitSec = item.split(";").map((section) => section.trim());
