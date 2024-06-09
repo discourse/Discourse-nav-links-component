@@ -1,6 +1,6 @@
 {
-  "name": "Nav Links Component",
-  "about_url": "https://meta.discourse.org/t/87225",
+  "name": "Custom Top Navigation Links",
+  "about_url": "https://meta.discourse.org/t/custom-top-navigation-links/87225",
   "license_url": "https://github.com/discourse/Discourse-nav-links-component/blob/main/LICENSE",
   "component": true
 }
