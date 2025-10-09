@@ -4,7 +4,7 @@ export default {
   name: "nav-links-component",
 
   initialize() {
-    withPluginApi("0.8", (api) => {
+    withPluginApi((api) => {
       const itemsSetting = settings.Nav_links;
       const items = itemsSetting
         .split("|")
