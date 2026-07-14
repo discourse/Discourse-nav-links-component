@@ -7,14 +7,13 @@
 }
 
 @if $Hide_default_links == "true" {
-    .list-control-toggle-link-content li:not([class*="custom_"]) {
+  .list-control-toggle-link-content li:not([class*="custom_"]) {
+    display: none;
+  }
+
+  @include viewport.from(sm) {
+    #navigation-bar li:not([class*="custom_"]) {
       display: none;
     }
-
-    @include viewport.from(sm) {
-      #navigation-bar li:not([class*="custom_"]) {
-        display: none;
-      }
-    }
-    
+  }
 }
