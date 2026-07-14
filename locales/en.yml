@@ -1,0 +1,16 @@
+en:
+  theme_metadata:
+    settings:
+      nav_links:
+        description: Custom links to display in the topic list navigation
+        schema:
+          properties:
+            display_name:
+              label: Display name
+              description: The text that shows on the menu
+            title:
+              label: Title
+              description: The text that shows on hover
+            url:
+              label: URL
+              description: The link (e.g., /latest or https://discourse.org)

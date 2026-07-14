@@ -5,26 +5,18 @@ export default {
 
   initialize() {
     withPluginApi((api) => {
-      const itemsSetting = settings.Nav_links;
-      const items = itemsSetting
-        .split("|")
-        .map((item) => item.trim())
-        .filter(Boolean);
-
-      for (const item of items) {
-        const splitSec = item.split(";").map((section) => section.trim());
-        const filter = splitSec[0];
-        const filterDasherized = splitSec[0].replace(/\s+/g, "-").toLowerCase();
-        const title = splitSec[1];
-        const location = splitSec[2];
-
+      for (const {
+        display_name: displayName,
+        title,
+        url,
+      } of settings.nav_links) {
         api.addNavigationBarItem({
-          name: `custom_${filterDasherized}`,
-          displayName: filter,
+          name: `custom_${displayName.replace(/\s+/g, "-").toLowerCase()}`,
+          displayName,
           title,
-          href: location,
+          href: url,
           forceActive: (category, args, router) =>
-            router.currentURL.includes(location),
+            router.currentURL?.split("?")[0] === url,
         });
       }
     });

@@ -1,12 +1,37 @@
-Nav_links:
-  type: list
-  default: "Latest;topics with recent posts;/latest|Categories;all topics grouped by category;/categories|Top;the most active topics in the last year, month, week or day;/top"
-  description:
-    en: |
-      Semicolon delimited in this order: <strong>display name;description;URL</strong>
-      <br/><strong>Display name:</strong> text that shows on the menu
-      <br/><strong>Description:</strong> text that shows on hover
-      <br/><strong>URL:</strong> the link (e.g., <code>/latest</code> or <code>https://discourse.org</code>)
+nav_links:
+  type: objects
+  default:
+    - display_name: Latest
+      title: topics with recent posts
+      url: /latest
+    - display_name: Categories
+      title: all topics grouped by category
+      url: /categories
+    - display_name: Top
+      title: the most active topics in the last year, month, week or day
+      url: /top
+  schema:
+    name: link
+    identifier: display_name
+    properties:
+      display_name:
+        type: string
+        required: true
+        validations:
+          min_length: 1
+          max_length: 100
+      title:
+        type: string
+        validations:
+          min_length: 1
+          max_length: 1000
+      url:
+        type: string
+        required: true
+        validations:
+          min_length: 1
+          max_length: 2048
+          url: true
 Hide_dropdowns:
   default: false
   description:

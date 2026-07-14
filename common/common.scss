@@ -1,3 +1,5 @@
+@use "lib/viewport";
+
 @if $Hide_dropdowns == "true" {
   ol.category-breadcrumb {
     display: none;
@@ -5,9 +7,14 @@
 }
 
 @if $Hide_default_links == "true" {
-  #navigation-bar {
-    li:not(.navigation-toggle, [class*="custom_"]) {
+    .list-control-toggle-link-content li:not([class*="custom_"]) {
       display: none;
     }
-  }
+
+    @include viewport.from(sm) {
+      #navigation-bar li:not([class*="custom_"]) {
+        display: none;
+      }
+    }
+    
 }
