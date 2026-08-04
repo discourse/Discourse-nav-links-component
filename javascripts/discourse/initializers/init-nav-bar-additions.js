@@ -27,19 +27,32 @@ const COUNTED_FILTERS = {
   "/unread": "unread",
 };
 
-function getCountForFilter(topicTrackingState, filterType) {
+function getCountForFilter(
+  topicTrackingState,
+  filterType,
+  { enable_unified_new }
+) {
   if (!topicTrackingState) {
     return 0;
   }
 
+  const newCount =
+    topicTrackingState.countNew?.() ?? topicTrackingState.newCount ?? 0;
+  const unreadCount =
+    topicTrackingState.countUnread?.() ?? topicTrackingState.unreadCount ?? 0;
+
   if (filterType === "new") {
-    return topicTrackingState.countNew?.() ?? topicTrackingState.newCount ?? 0;
+    // When Discourse's "Unified New" is enabled, the /new route shows both
+    // new and unread topics, so the count should reflect both — matching
+    // the behaviour of Discourse's built-in "New" navigation item.
+    if (enable_unified_new) {
+      return newCount + unreadCount;
+    }
+    return newCount;
   }
 
   if (filterType === "unread") {
-    return (
-      topicTrackingState.countUnread?.() ?? topicTrackingState.unreadCount ?? 0
-    );
+    return unreadCount;
   }
 
   return 0;
@@ -53,6 +66,7 @@ export default {
       const topicTrackingState = api.container.lookup(
         "service:topic-tracking-state"
       );
+      const siteSettings = api.container.lookup("service:site-settings");
 
       for (const link of settings.nav_links) {
         const { display_name: displayName, url } = link;
@@ -69,9 +83,11 @@ export default {
 
         if (settings.Show_counts && filterType && topicTrackingState) {
           // Use a function for displayName so Discourse re-evaluates it
-          // reactively, picking up count changes from TopicTrackingState
+          // reactively, picking up count changes from TopicTrackingState.
           itemConfig.displayName = () => {
-            const count = getCountForFilter(topicTrackingState, filterType);
+            const count = getCountForFilter(topicTrackingState, filterType, {
+              enable_unified_new: siteSettings.enable_unified_new,
+            });
             return count > 0
               ? `${localizedDisplayName} (${count})`
               : localizedDisplayName;
